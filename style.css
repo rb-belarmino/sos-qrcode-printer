@@ -61,7 +61,7 @@ body {
 }
 
 .button {
-  background-color: var(--base-color);
+  background-color: #2eab62;
   color: var(--text-color-light);
   height: 3.5rem;
   display: inline-flex;
@@ -484,7 +484,7 @@ nav.show div.icon-close {
 /*====  FOOTER   ============================ */
 
 footer {
-  background: var(--base-color);
+  background: #2eab62;
 }
 
 footer.section {
@@ -494,6 +494,8 @@ footer.section {
 footer .logo {
   display: inline-block;
   margin-bottom: 1.5rem;
+  width: 8rem;
+  height: 4rem;
 }
 
 footer .brand p {
@@ -511,9 +513,12 @@ footer .social {
   width: fit-content;
 }
 
-footer .social a {
+footer .social img {
   transition: 0.3s;
-  display: inline-block;
+  display: flex;
+
+  width: 100%;
+  height: 8rem;
 }
 
 footer .social a:hover {
