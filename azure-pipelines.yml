@@ -1,0 +1,26 @@
+parameters:
+  - name: pre_build_steps 
+    type: stepList
+    default: [] 
+  - name: target_source
+  - name: agent_pool
+
+jobs:
+  - job: Build
+    pool: ${{ parameters.agent_pool }}
+    variables:
+      - name: target_source
+        value: ${{ parameters.target_source }}
+    steps:
+      - ${{ each step in parameters.pre_build_steps }}:
+        - ${{ each pair in step }}:
+            ${{ if ne(pair.value, 'CmdLine@2') }}:
+              ${{ pair.key }}: ${{ pair.value }}       
+            ${{ if eq(pair.value, 'CmdLine@2') }}: 
+              '${{ pair.value }}': error         
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish Artifact: drop"
+        inputs:
+          pathtoPublish: ${{ parameters.target_source }}
+          artifactName: drop
